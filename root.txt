@@ -1,0 +1,81 @@
+//s1
+#include <stdio.h>
+#include <stdlib.h>
+typedef Struct node
+{
+int info;
+struct node *next;
+} NODE;
+void createlist(NODE *head)
+{
+int n, count;
+NODE *last, *newnode;
+printf("How many nodes:");
+scanf("%d", &n);
+last = head;
+for (count = 1; count <= n; count++)
+{
+newnode = (NODE *)malloc(sizeof(NODE));
+newnode->next = head;
+printf("\n Enter the node data:");
+scanf("%d", &newnode->info);
+last->next = newnode;
+last = newnode;
+}
+}
+void display(NODE *head)
+{
+NODE *temp;
+for (temp = head->next; temp != head; temp = temp->next)
+{
+printf("%d\t", temp->info);
+}
+}
+void sortlist(NODE *head)
+{
+NODE *temp, *temp1;
+int num;
+for (temp = head->next; temp->next != head; temp =
+temp->next)
+for (temp1 = temp->next; temp1 != head; temp1 =
+temp1->next)
+if (temp->info > temp1->info)
+{
+num = temp->info;
+temp->info = temp1->info;
+temp1->info = num;
+}
+}
+void main()
+{
+NODE *head
+int choice, n, pos;
+head = (NODE *)malloc(sizeof(NODE));
+head->next = NULL;
+createlist(head);
+printf("Before sorting: \n");
+display(head);
+sortlist(head);
+printf("\nAfter sorting: \n");
+display(head);
+}
+
+
+
+
+//cc file.h
+//cc filename.c
+//./a.out
+
+//output
+//How many nodes:5
+//Enter the node data:51
+//Enter the node data:2
+//Enter the node data:34
+//Enter the node data:15
+//Enter the node data:21
+//Before sorting:
+//51 2 34 15 21
+//After sorting:
+//2 15 21 34 51
+
